@@ -25,20 +25,20 @@ def get_filters():
             continue
         else:
             break
-        
+
 
 
     # TO DO: get user input for month (all, january, february, ... , june)
     while True:
         month = input('Wich month would you like to filter ? January, February, March, April, May, or June? or all iif you do not have any preference.')
         month = month.lower()
-        if month not in ('january','february','march','april','may','june','all'):        
+        if month not in ('january','february','march','april','may','june','july','august','october','november','desember','all'):        
             print('Sorry your typing wrong month, please try again.\n')
             continue
         else:
             break
-           
-        
+
+
 
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
     while True:
@@ -49,7 +49,7 @@ def get_filters():
             continue
         else:
             break
-            
+
 
 
     print('-'*40)
@@ -107,7 +107,7 @@ def time_stats(df):
 
     # TO DO: display the most common day of week
     most_day_of_week = df['day_of_week'].mode()[0]
-    print('\nthe most common day is : ', most_day_of_week) 
+    print('\nthe most common day is : ', most_day_of_week)
 
     # TO DO: display the most common start hour
     df['hour'] = df['Start Time'].dt.hour
@@ -126,7 +126,7 @@ def station_stats(df):
     # TO DO: display most commonly used start station
     most_start_station = df['Start Station'].value_counts().idxmax()
     print('\nthe most start station is: ', most_start_station)
-    
+
     # TO DO: display most commonly used end station
     most_end_station = df['End Station'].value_counts().idxmax()
     print('\nthe most end station is: ', most_end_station)
@@ -134,7 +134,7 @@ def station_stats(df):
     # TO DO: display most frequent combination of start station and end station trip
     Combination = df.groupby(['Start Station','End Station']).count()
     print('\nMost Commonly used combination of start station and end station trip:', most_start_station, " & ", most_end_station)
-    
+
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -186,8 +186,8 @@ def user_stats(df):
         most_year = df['Birth Year'].max()
         print('\nthe most recent year is: ',most_year)
     except KeyError:
-        print("\nGender Types:\nNo data available for this month.") 
-    
+        print("\nGender Types:\nNo data available for this month.")
+
     try:
         most_common_year = df['Birth Year'].value_counts().idxmax()
         print('\nthe most common year is: ',most_common_year)
@@ -209,17 +209,17 @@ def main():
         user_stats(df)
         S = 0
         E = 5
-        
-        while True:          
-            permision = input('\nWould you like to see some individual trip data ? type yes or no\n')            
+
+        while True:
+            permision = input('\nWould you like to see some individual trip data ? type yes or no\n')
             raw_data = df[S:E]
             print(raw_data)
             S += 5
             E += 5
             if permision.lower() == 'no':
                 break
-            
-        
+
+
 
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
