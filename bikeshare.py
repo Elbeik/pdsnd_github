@@ -1,7 +1,9 @@
 import time
 import pandas as pd
 import numpy as np
-
+"""
+  the dec for data of three cites chicago , new york city and washington
+  """
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
@@ -32,7 +34,7 @@ def get_filters():
     while True:
         month = input('Wich month would you like to filter ? January, February, March, April, May, or June? or all iif you do not have any preference.')
         month = month.lower()
-        if month not in ('january','february','march','april','may','june','july','august','october','november','desember','all'):        
+        if month not in ('january','february','march','april','may','june','july','august','october','november','desember','all'):
             print('Sorry your typing wrong month, please try again.\n')
             continue
         else:
