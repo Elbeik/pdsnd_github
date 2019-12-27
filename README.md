@@ -18,3 +18,8 @@ bikeshare.py
 * Python documentation
 * Pandas documentation
 * Lectures for Programming for Data Science
+
+### Data files uesd
+chicago.csv
+new_york_city.csv
+washington.csv
