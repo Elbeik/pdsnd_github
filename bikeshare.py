@@ -19,38 +19,26 @@ def get_filters():
     """
     print('Hello! Let\'s explore some US bikeshare data!')
     # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
-    while True:
-        city = input('Would you like to see data for chicago, new york city, or washington?\n')
-        city = city.lower()
-        if city not in ('chicago','new york city','washington'):
-            print('sorry your typing wrong city, please try again.')
-            continue
-        else:
-            break
+    city=input("Please choose one of the three cities: chicago, new york city, washington:\n").lower()
+    while city not in ["chicago", "new york city", "washington"]:
+        print("You did not type the correct name, please try it again:\n")
+        city=input("Please choose one of the three cities: chicago, new york city, washington:\n").lower()
 
 
 
     # TO DO: get user input for month (all, january, february, ... , june)
-    while True:
-        month = input('Wich month would you like to filter ? January, February, March, April, May, or June? or all iif you do not have any preference.')
-        month = month.lower()
-        if month not in ('january','february','march','april','may','june','july','august','october','november','desember','all'):
-            print('Sorry your typing wrong month, please try again.\n')
-            continue
-        else:
-            break
+    month=input("Please choose one of the following months: january, february, march, april, may, june, all:\n").lower()
+    while month not in ["january", "february", "march", "april", "may", "june", "all"]:
+        print("You did not type the correct name, please try it again:\n")
+        month=input("Please choose one of the following months: january, february, march, april, may, june, all:\n").lower()
 
 
 
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
-    while True:
-        day = input('Which day would you like to see filter? Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, or Sunday? or typing all if do have any preference. \n')
-        day = day.lower()
-        if day not in ('monday','tuesday','wednesday','thursday','friday','saturday','sunday','all'):
-            print('Sorry you wrote wrong day.')
-            continue
-        else:
-            break
+    day =input("Please choose one of the following day of week: monday, tuesday, wednesday, thursday, friday, all:\n").lower()
+    while day not in ["monday", "tuesday", "wednesday", "thursday", "friday", "all"]:
+        print("You did not type the correct name, please try it again:\n")
+        day=input("Please choose one of the following day of week: monday, tuesday, wednesday, thursday, friday, all:\n").lower()
 
 
 
@@ -180,24 +168,24 @@ def user_stats(df):
         print("\nGender Types:\nNo data available for this month.")
     # TO DO: Display earliest, most recent, and most common year of birth
     try:
-        earliest_year = df['Birth Year'].min()
+        earliest_year = min(df['Birth Year'])
         print('\nthe earliest year  is: ',earliest_year)
-    except KeyError:
-        print("\nGender Types:\nNo data available for this month.")
-    try:
-        most_year = df['Birth Year'].max()
+        most_year = max(df['Birth Year'])
         print('\nthe most recent year is: ',most_year)
-    except KeyError:
-        print("\nGender Types:\nNo data available for this month.")
-
-    try:
         most_common_year = df['Birth Year'].value_counts().idxmax()
         print('\nthe most common year is: ',most_common_year)
-    except KeyError:
+    except:
         print("\nMost Common Year:\nNo data available for this month.")
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
+""" for showing some raw data """
+    raw_data  = input("Would you like to see some raw data? Enter yes or no.\n").lower()
+    n=0
+    while raw_data  == 'yes':
+        print(df[n:n+5])
+        n+=5
+        raw_data  = input('\nWould you like to see some individual trip data ? type yes or no\n')
 
 
 def main():
@@ -209,17 +197,6 @@ def main():
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
-        S = 0
-        E = 5
-
-        while True:
-            permision = input('\nWould you like to see some individual trip data ? type yes or no\n')
-            raw_data = df[S:E]
-            print(raw_data)
-            S += 5
-            E += 5
-            if permision.lower() == 'no':
-                break
 
 
 
